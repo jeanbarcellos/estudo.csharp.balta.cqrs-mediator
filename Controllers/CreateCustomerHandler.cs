@@ -5,6 +5,7 @@ using Shop.Domain.Handlers;
 namespace Shop.Controllers
 {
     [ApiController]
+    [Route("customers")]
     public class CreateCustomerHandler : ControllerBase
     {
         [HttpPost]

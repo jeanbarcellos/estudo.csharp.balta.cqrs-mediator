@@ -4,7 +4,7 @@ using Shop.Domain.Commands.Responses;
 
 namespace Shop.Domain.Handlers
 {
-    public class CreateCustomerHandler
+    public class CreateCustomerHandler : ICreateCustomerHandler
     {
         public CreateCustomerResponse Handle(CreateCustomerRequest command)
         {
@@ -25,4 +25,5 @@ namespace Shop.Domain.Handlers
             };
         }
     }
+
 }

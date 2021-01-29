@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Shop.Data;
 using Shop.Domain.Handlers;
-
 namespace Shop
 {
     public class Startup
@@ -19,14 +20,16 @@ namespace Shop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddScoped<DatabaseContext>();
+
+            services.AddTransient<ICreateCustomerHandler, CreateCustomerHandler>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shop", Version = "v1" });
             });
-
-            services.AddTransient<ICreateCustomerHandler, CreateCustomerHandler>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

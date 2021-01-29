@@ -23,8 +23,8 @@ Referências:
 
 ## Implementações
 
-- [CQRS](tree/1-cqrs)
-- [CQRS com Mediator](tree/1-cqrs)
+- [CQRS](/tree/1-cqrs)
+- [CQRS com Mediator](/tree/1-cqrs)
 
 <br>
 <br>

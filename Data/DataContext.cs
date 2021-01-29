@@ -3,9 +3,9 @@ using Shop.Domain.Entities;
 
 namespace Shop.Data
 {
-    public class DatabaseContext : DbContext
+    public class DataContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
         }

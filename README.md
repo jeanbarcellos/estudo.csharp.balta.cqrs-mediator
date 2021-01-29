@@ -21,6 +21,14 @@ Referências:
 <br>
 <hr>
 
+## Implementações
+
+- [CQRS](tree/1-cqrs)
+- [CQRS com Mediator](tree/1-cqrs)
+
+<br>
+<br>
+
 ## Anotações
 
 **O que é o CQRS**

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Shop.Data;
@@ -9,16 +11,27 @@ namespace Shop.Domain.Repositories
     {
         private readonly DataContext _context;
 
-        public async Task<bool> Exists(string email)
+        public CustomerRepository(DataContext context)
         {
-            return await _context.Customers.AnyAsync(x => x.Email == email);
+            _context = context;
         }
 
-        public async Task Save(Customer customer)
+        public bool Exists(string email)
+        {
+            return _context.Customers.Any(x => x.Email == email);
+        }
+
+        public void Save(Customer customer)
         {
             _context.Customers.Add(customer);
 
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
+
+        public Customer GetCustomerById(Guid Id)
+        {
+            return _context.Customers.FirstOrDefault(x => x.Id == Id);
+        }
+
     }
 }

@@ -23,8 +23,8 @@ Referências:
 
 ## Implementações
 
-- [CQRS](/tree/1-cqrs)
-- [CQRS com Mediator](/tree/1-cqrs)
+- [CQRS](https://github.com/jeanbarcellos/estudo.csharp.balta.cqrs-mediator/tree/1-cqrs)
+- [CQRS com Mediator](https://github.com/jeanbarcellos/estudo.csharp.balta.cqrs-mediator/tree/2-cqrs-with-mediator)
 
 <br>
 <br>

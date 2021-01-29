@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Shop.Data;
 using Shop.Domain.Handlers;
+using Shop.Domain.Repositories;
+using Shop.Domain.Services;
+
 namespace Shop
 {
     public class Startup
@@ -20,8 +23,12 @@ namespace Shop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DatabaseContext>(opt => opt.UseInMemoryDatabase("Database"));
-            services.AddScoped<DatabaseContext>();
+            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            // services.AddScoped<DataContext>();
+
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddTransient<ICreateCustomerHandler, CreateCustomerHandler>();
 

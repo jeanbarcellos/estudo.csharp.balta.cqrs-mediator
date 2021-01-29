@@ -31,6 +31,7 @@ namespace Shop
             services.AddScoped<IEmailService, EmailService>();
 
             services.AddTransient<ICreateCustomerHandler, CreateCustomerHandler>();
+            services.AddTransient<IFindCustomerByIdHandler, FindCustomerByIdHandler>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

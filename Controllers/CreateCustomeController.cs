@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Domain.Commands.Requests;
+using Shop.Domain.Commands.Responses;
 using Shop.Domain.Handlers;
 using Shop.Domain.Queries.Requests;
 
@@ -8,7 +10,7 @@ namespace Shop.Controllers
 {
     [ApiController]
     [Route("customers")]
-    public class CreateCustomerHandler : ControllerBase
+    public class CreateCustomeController : ControllerBase
     {
 
         [HttpGet]
@@ -30,9 +32,9 @@ namespace Shop.Controllers
             [FromBody] CreateCustomerRequest command
         )
         {
-            var result = mediator.Send(command);
+            var response = mediator.Send(command);
 
-            return Ok(result);
+            return Ok(response);
         }
     }
 }

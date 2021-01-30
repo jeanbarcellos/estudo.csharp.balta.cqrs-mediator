@@ -1,3 +1,5 @@
+using System.Reflection;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -30,8 +32,7 @@ namespace Shop
 
             services.AddScoped<IEmailService, EmailService>();
 
-            services.AddTransient<ICreateCustomerHandler, CreateCustomerHandler>();
-            services.AddTransient<IFindCustomerByIdHandler, FindCustomerByIdHandler>();
+            IServiceCollection serviceCollection = services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

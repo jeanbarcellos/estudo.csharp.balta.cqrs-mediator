@@ -5,36 +5,37 @@ using Shop.Domain.Commands.Requests;
 using Shop.Domain.Commands.Responses;
 using Shop.Domain.Handlers;
 using Shop.Domain.Queries.Requests;
+using Shop.Domain.Queries.Responses;
 
 namespace Shop.Controllers
 {
     [ApiController]
     [Route("customers")]
-    public class CreateCustomeController : ControllerBase
+    public class CustomeController : ControllerBase
     {
 
         [HttpGet]
         [Route("")]
-        public IActionResult GetByid(
+        public async Task<IActionResult> GetByid(
             [FromServices] IMediator mediator,
             [FromQuery] FindCustomerByIdRequest command
         )
         {
-            var result = mediator.Send(command);
+            var result = await mediator.Send(command);
 
             return Ok(result);
         }
 
         [HttpPost]
         [Route("")]
-        public IActionResult Create(
+        public async Task<IActionResult> Create(
             [FromServices] IMediator mediator,
             [FromBody] CreateCustomerRequest command
         )
         {
-            var response = mediator.Send(command);
+            var result = await mediator.Send(command);
 
-            return Ok(response);
+            return Ok(result);
         }
     }
 }

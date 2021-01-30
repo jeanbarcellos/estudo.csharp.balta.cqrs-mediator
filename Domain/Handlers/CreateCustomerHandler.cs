@@ -21,7 +21,6 @@ namespace Shop.Domain.Handlers
             _emailService = emailService;
         }
 
-
         public Task<CreateCustomerResponse> Handle(CreateCustomerRequest request, CancellationToken cancellationToken)
         {
             // Verificar se o cliente já está cadastrado

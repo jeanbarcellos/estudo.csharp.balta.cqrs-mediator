@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Domain.Commands.Requests;
 using Shop.Domain.Handlers;
@@ -13,11 +14,11 @@ namespace Shop.Controllers
         [HttpGet]
         [Route("")]
         public IActionResult GetByid(
-            [FromServices] IFindCustomerByIdHandler handler,
+            [FromServices] IMediator mediator,
             [FromQuery] FindCustomerByIdRequest command
         )
         {
-            var result = handler.Handle(command);
+            var result = mediator.Send(command);
 
             return Ok(result);
         }
@@ -25,13 +26,13 @@ namespace Shop.Controllers
         [HttpPost]
         [Route("")]
         public IActionResult Create(
-            [FromServices] ICreateCustomerHandler handler,
+            [FromServices] IMediator mediator,
             [FromBody] CreateCustomerRequest command
         )
         {
-            var response = handler.Handle(command);
+            var result = mediator.Send(command);
 
-            return Ok(response);
+            return Ok(result);
         }
     }
 }

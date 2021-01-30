@@ -7,7 +7,7 @@ namespace Shop.Controllers
 {
     [ApiController]
     [Route("customers")]
-    public class CreateCustomerHandler : ControllerBase
+    public class CustomerController : ControllerBase
     {
 
         [HttpGet]

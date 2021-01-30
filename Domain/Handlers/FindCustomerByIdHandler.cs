@@ -1,11 +1,14 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Shop.Domain.Queries.Requests;
 using Shop.Domain.Queries.Responses;
 using Shop.Domain.Repositories;
 
 namespace Shop.Domain.Handlers
 {
-    public class FindCustomerByIdHandler : IFindCustomerByIdHandler
+    public class FindCustomerByIdHandler : IRequestHandler<FindCustomerByIdRequest, FindCustomerByIdResponse>
     {
         ICustomerRepository _repository;
 
@@ -14,21 +17,23 @@ namespace Shop.Domain.Handlers
             _repository = repository;
         }
 
-        public FindCustomerByIdResponse Handle(FindCustomerByIdRequest command)
+        public Task<FindCustomerByIdResponse> Handle(FindCustomerByIdRequest request, CancellationToken cancellationToken)
         {
-            var customer = _repository.GetCustomerById(command.Id);
+            var customer = _repository.GetCustomerById(request.Id);
 
             if (customer == null)
             {
                 throw new Exception("Nada");
             }
 
-            return new FindCustomerByIdResponse
+            var result = new FindCustomerByIdResponse
             {
                 Id = customer.Id,
                 Name = customer.Name,
                 Email = customer.Email,
             };
+
+            return Task.FromResult(result);
         }
     }
 }
